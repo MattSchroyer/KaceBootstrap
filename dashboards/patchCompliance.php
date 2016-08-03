@@ -56,12 +56,12 @@ GROUP BY
 ";
 
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 $i = 0;
 $outputRows = array();
 
-while ( ($row = mysql_fetch_assoc($result1)) != NULL )
+while ( ($row = mysqli_fetch_assoc($result1)) != NULL )
 {
 	$vendorRating = stripslashes($row['VENDOR_RATING']);
 	$compliance = stripslashes($row['COMPLIANCE']);

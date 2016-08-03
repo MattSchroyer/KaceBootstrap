@@ -10,7 +10,7 @@ if ( isset($_GET['sw']) )
 { // drill-down!
 	$sw = urldecode($_GET['sw']);
 	$displaySW = htmlspecialchars($sw);
-	$sqlSW = mysql_real_escape_string($sw);
+	$sqlSW = mysqli_real_escape_string($dbh, $sw);
 ?>
 <h2>'<?php echo $displaySW; ?>' Detailed Installed/Removed Within Last <?php echo $daysAgo; ?> days</h2>
 <table class="table table-striped table-bordered table-head-bordered-bottom table-condensed" style='width:50em'>
@@ -45,10 +45,10 @@ ORDER BY
 	AH.NAME, CHANGE_TYPE
 ";
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 
-while ( ($row = mysql_fetch_assoc($result1)) != NULL )
+while ( ($row = mysqli_fetch_assoc($result1)) != NULL )
 {
 	$ID = stripslashes($row['MACHINE_ID']);
 	$computerName = stripslashes($row['COMPUTER']);
@@ -111,10 +111,10 @@ ORDER BY
 ";
 
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 
-while ( ($row = mysql_fetch_assoc($result1)) != NULL )
+while ( ($row = mysqli_fetch_assoc($result1)) != NULL )
 {
 	$count = stripslashes($row['CountofSoftware']);
 	$changeType = stripslashes($row['CHANGE_TYPE']);

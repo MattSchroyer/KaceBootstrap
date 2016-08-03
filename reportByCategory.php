@@ -20,13 +20,13 @@ order by total;
 ";
 
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 $i = 0;
 while ($i < $num)
 {
-	$total = mysql_result($result1,$i,"total");
-	$CatName = mysql_result($result1,$i,"CatName"); 
+	$total = mysqli_result($result1,$i,"total");
+	$CatName = mysqli_result($result1,$i,"CatName"); 
 
 	$total = stripslashes($total);
 	$CatName = stripslashes($CatName);

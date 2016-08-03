@@ -7,7 +7,7 @@
 #do not enter in any http:// or https://
 $KaceBoxDNS="kace";
 
-#MYSQL password on Dell Kace Box (from Settings -> General Settings)
+#mysql password on Dell Kace Box (from Settings -> General Settings)
 $dbpassword="yourpassword";
 
 #number of main queue (usually the default queue)
@@ -111,9 +111,9 @@ $dropdownReports = array(
 ########################
 
 
-if ( !($dbh=mysql_connect("$KaceBoxDNS", "R1", "$dbpassword")) )
-	die('I cannot connect to the database because: ' . mysql_error());
-mysql_select_db ("ORG1");
+if ( !($dbh=mysqli_connect("$KaceBoxDNS", "R1", "$dbpassword", "ORG1")) )
+	die('I cannot connect to the database because: ' . mysqli_error());
+#mysqli_select_db ("ORG1");
 
 
 #####################################################
@@ -131,9 +131,9 @@ WHERE
  SETTINGS.NAME='HD_DEFAULT_QUEUE_ID'
 LIMIT 1
 ";
-	$results = mysql_query($query);
-	$num = @mysql_numrows($results);
-	if ( $num > 0 && ($row = mysql_fetch_assoc($results)) != NULL && $row['NAME'] != NULL )
+	$results = mysqli_query($query);
+	$num = @mysqli_numrows($results);
+	if ( $num > 0 && ($row = mysqli_fetch_assoc($results)) != NULL && $row['NAME'] != NULL )
 	{
 		$mainQueueID = $row['ID'];
 		$mainQueueName = $row['NAME'];
@@ -154,17 +154,18 @@ FROM
 WHERE Q.ID=$mainQueueID
 ";
 
-	$results = mysql_query($query);
-	$num = @mysql_numrows($results);
+	$results = mysqli_query($query);
+	$num = @mysqli_numrows($results);
 	if ( $num > 0 )
 	{
 		$mainQueueOwners = ""; // reset to empty
 
-		while( ($row = mysql_fetch_assoc($results)) != NULL )
+		while( ($row = mysqli_fetch_assoc($results)) != NULL )
 		{
 			$mainQueueOwners .= "$row[LABEL_ID],";
 		}
 		$mainQueueOwners = substr($mainQueueOwners,0,-1); // chop off the trailing comma
 	}
 }
+
 ?>

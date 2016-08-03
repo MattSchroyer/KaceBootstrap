@@ -26,14 +26,14 @@ SELECT u.ID,u.USER_NAME
  ORDER BY u.USER_NAME
 ";
 
-$result1 = mysql_query($query1);
-$numUsers = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$numUsers = mysqli_num_rows($result1);
 $seriesOpen = array(); // do two 2D arrays, just to avoid the 3D array nastiness.
 $seriesClosed = array();
 $users = array();
 $i = 0;
 $userid_xref = array();
-while( ($row = mysql_fetch_assoc($result1)) )
+while( ($row = mysqli_fetch_assoc($result1)) )
 {
 	$users[$i] = array( 'id'=>$row['ID'], 'user'=>$row['USER_NAME'] );
 	$seriesOpen[$i] = array( 0=>0, 0, 0 ); // just set up 3 months default anyway
@@ -171,12 +171,12 @@ GROUP BY hdt.OWNER_ID, YEAR(hdt.CREATED), MONTH(hdt.CREATED)
 ORDER BY YEAR(hdt.CREATED), MONTH(hdt.CREATED), hdt.OWNER_ID
 ";
 
-$result1 = mysql_query($query1);
+$result1 = mysqli_query($dbh, $query1);
 
 $lastyear = 0;
 $lastmonth = 0;
 $xref_count = -1;
-while( ($row = mysql_fetch_assoc($result1)) )
+while( ($row = mysqli_fetch_assoc($result1)) )
 {
 	$total_open = $row["total_opened"];
 	$month = $row["month"];
@@ -228,12 +228,12 @@ GROUP BY hdt.OWNER_ID, YEAR(hdt.TIME_CLOSED), MONTH(hdt.TIME_CLOSED)
 ORDER BY hdt.TIME_CLOSED
 ";
 
-$result1 = mysql_query($query1);
+$result1 = mysqli_query($dbh, $query1);
 
 $lastyear = 0;
 $lastmonth = 0;
 $xref_count = -1; // we pre-increment on first loop iteration
-while( ($row = mysql_fetch_assoc($result1)) )
+while( ($row = mysqli_fetch_assoc($result1)) )
 {
 	$total_closed = $row["total"];
 	$month = $row["month"];

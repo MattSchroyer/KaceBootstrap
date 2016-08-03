@@ -20,13 +20,13 @@ FROM
   ) As s1
 ";
 
-$result = mysql_query($query);
+$result = mysqli_query($dbh, $query);
 if (!$result)
 {
     echo 'Could not run query: ' . mysql_error();
     exit;
 }
-$row = mysql_fetch_row($result);
+$row = mysqli_fetch_row($result);
 $theAverage = $row[0];
 $theAverage = round($theAverage, 2);
 

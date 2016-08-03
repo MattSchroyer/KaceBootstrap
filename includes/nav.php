@@ -17,11 +17,11 @@ SELECT u.ID,u.FULL_NAME
   GROUP BY u.ID
  ORDER BY u.FULL_NAME
 ";
-$result1 = mysql_query($query1);
-$numUsers = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$numUsers = mysqli_num_rows($result1);
 $userList = array();
 $i = 0;
-while( ($row = mysql_fetch_assoc($result1)) )
+while( ($row = mysqli_fetch_assoc($result1)) )
 {
 	$userList[++$i] = array( 'id'=>$row['ID'], 'user'=>$row['FULL_NAME'] );
 	$username = explode(' ',$row['FULL_NAME']);

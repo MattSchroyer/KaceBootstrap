@@ -13,14 +13,13 @@ AND (HD_STATUS.NAME not like '%Server Status Report%')
 AND (HD_STATUS.STATE not like '%Closed%')
 order by counted desc";
 
-
-$result = mysql_query($query);
-$num = mysql_num_rows($result);
+$result = mysqli_query($dbh, $query);
+$num = mysqli_num_rows($result);
 $i = 0;
 
 while ($i < $num)
 {
-	$currentlyOpen = mysql_result($result,$i,"counted");
+	$currentlyOpen = mysqli_result($result,$i,"counted");
 	#$name = mysql_result($result,$i,"NAME");
 	$i++;
 }

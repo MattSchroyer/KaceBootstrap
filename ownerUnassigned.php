@@ -42,21 +42,21 @@ ORDER BY CREATED desc
 ";
 
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 $i = 0;
 while ($i < $num)
 {
-	$ID = mysql_result($result1,$i,"ID");
-	$Title = mysql_result($result1,$i,"Title");
-	$Status = mysql_result($result1,$i,"Status");        
-	$Cust0 = mysql_result($result1,$i,"Cust0");
-	$QueueName = mysql_result($result1,$i,"QueueName");
-	$Created = mysql_result($result1,$i,"Created");
-	$Modified = mysql_result($result1,$i,"Modified");
-	$Priority = mysql_result($result1,$i,"Priority");
-	$Owner = mysql_result($result1,$i,"Owner");	
-	$Submitter = mysql_result($result1,$i,"Submitter");
+	$ID = mysqli_result($result1,$i,"ID");
+	$Title = mysqli_result($result1,$i,"Title");
+	$Status = mysqli_result($result1,$i,"Status");        
+	$Cust0 = mysqli_result($result1,$i,"Cust0");
+	$QueueName = mysqli_result($result1,$i,"QueueName");
+	$Created = mysqli_result($result1,$i,"Created");
+	$Modified = mysqli_result($result1,$i,"Modified");
+	$Priority = mysqli_result($result1,$i,"Priority");
+	$Owner = mysqli_result($result1,$i,"Owner");	
+	$Submitter = mysqli_result($result1,$i,"Submitter");
 
 
 	$ID = stripslashes($ID);

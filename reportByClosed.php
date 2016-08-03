@@ -51,13 +51,13 @@ GROUP BY
 ";
 
 
-$result = mysql_query($query);
+$result = mysqli_query($dbh, $query);
 if (!$result) {
     echo 'Could not run query: ' . mysql_error();
     exit;
 }
 
-while( ($row = mysql_fetch_assoc($result)) )
+while( ($row = mysqli_fetch_assoc($result)) )
 {
 	$total = $row['total'];
 	$month = $row['month'];
@@ -106,13 +106,13 @@ GROUP BY
 	DATE(CREATED)
 ";
 
-$result = mysql_query($query1);
+$result = mysqli_query($dbh, $query1);
 if (!$result) {
     echo 'Could not run query: ' . mysql_error();
     return;
 }
 
-while( ($row = mysql_fetch_assoc($result)) )
+while( ($row = mysqli_fetch_assoc($result)) )
 {
 	$total = $row['total'];
 	$month = $row['month'];

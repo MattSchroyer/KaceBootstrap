@@ -54,6 +54,10 @@
     <meta charset="utf-8" HTTP-EQUIV="refresh" CONTENT="<?php echo $refreshRate ?>">
 
 <?php
+                include_once("mysqliresult.php");
+?>
+
+<?php
 
 if (isset($_GET['u']))
 	$u = $_GET['u'];

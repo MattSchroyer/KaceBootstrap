@@ -41,6 +41,8 @@ $dataString="";
 
 include_once('includes/config.php');
 
+
+
 //***************************************
 // Total Open Tickets
 //***************************************
@@ -77,14 +79,14 @@ group by YEAR(hdt.CREATED), MONTH(hdt.CREATED)
 ORDER BY hdt.CREATED
 ";
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 $i = 0;
 while ($i < $num)
 {
-	$total = mysql_result($result1,$i,"total_open");
-	$month = mysql_result($result1,$i,"month");
-	$year = mysql_result($result1,$i,"year");
+	$total = mysqli_result($result1,$i,"total_open");
+	$month = mysqli_result($result1,$i,"month");
+	$year = mysqli_result($result1,$i,"year");
 
 	$total = stripslashes($total);
 	$month = stripslashes($month);
@@ -124,14 +126,14 @@ group by YEAR(hdt.CREATED), MONTH(hdt.CREATED)
 ORDER BY hdt.CREATED
 ";
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 $i = 0;
 while ($i < $num)
 {
-	$total = mysql_result($result1,$i,"total_opened");
-	$month = mysql_result($result1,$i,"month");
-	$year = mysql_result($result1,$i,"year");
+	$total = mysqli_result($result1,$i,"total_opened");
+	$month = mysqli_result($result1,$i,"month");
+	$year = mysqli_result($result1,$i,"year");
 
 //	$xAxis.="'$month-$year', ";
 	//$yAxisOpened.="$total, ";
@@ -163,14 +165,14 @@ group by YEAR(HD_TICKET.TIME_CLOSED), MONTH(HD_TICKET.TIME_CLOSED)
 ";
 
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 $i = 0;
 while ($i < $num)
 {
-	$total = mysql_result($result1,$i,"total");
-	$month = mysql_result($result1,$i,"month");
-	$year = mysql_result($result1,$i,"year");
+	$total = mysqli_result($result1,$i,"total");
+	$month = mysqli_result($result1,$i,"month");
+	$year = mysqli_result($result1,$i,"year");
 
 	$total = stripslashes($total);
 	$month = stripslashes($month);
@@ -210,14 +212,14 @@ group by YEAR(HD_TICKET.TIME_CLOSED), MONTH(HD_TICKET.TIME_CLOSED)
 ";
 
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 $i = 0;
 while ($i < $num)
 {
-	$total = mysql_result($result1,$i,"total");
-	$month = mysql_result($result1,$i,"month");
-	$year = mysql_result($result1,$i,"year");
+	$total = mysqli_result($result1,$i,"total");
+	$month = mysqli_result($result1,$i,"month");
+	$year = mysqli_result($result1,$i,"year");
 
 	$total = stripslashes($total);
 	$month = stripslashes($month);
@@ -253,14 +255,14 @@ AND HD_TICKET.TIME_CLOSED >= DATE_SUB(DATE_ADD(last_day(NOW()), INTERVAL 1 DAY),
 group by YEAR(HD_TICKET.TIME_CLOSED), MONTH(HD_TICKET.TIME_CLOSED)
 ";
 
-$result1 = mysql_query($query1);
-$num = mysql_numrows($result1);
+$result1 = mysqli_query($dbh, $query1);
+$num = mysqli_num_rows($result1);
 $i = 0;
 while ($i < $num)
 {
-	$total = mysql_result($result1,$i,"total");
-	$month = mysql_result($result1,$i,"month");
-	$year = mysql_result($result1,$i,"year");
+	$total = mysqli_result($result1,$i,"total");
+	$month = mysqli_result($result1,$i,"month");
+	$year = mysqli_result($result1,$i,"year");
 
 	$total = stripslashes($total);
 	$month = stripslashes($month);

@@ -29,8 +29,8 @@ if ( isset($_GET['cat']) && is_numeric($_GET['cat']) )
 	$category = intval($_GET['cat']);
 	$catName = "";
 	$query = "SELECT NAME FROM HD_CATEGORY WHERE HD_CATEGORY.ID = '$category' LIMIT 1";
-	$result = mysql_query($query);
-	while( ($row = mysql_fetch_assoc($result)) )
+	$result = mysqli_query($dbh, $query);
+	while( ($row = mysqli_fetch_assoc($result)) )
 		$catName = $row['NAME'];
 
 	if ( isset($_GET['sub']) )
@@ -169,9 +169,9 @@ GROUP BY HD_TICKET.HD_CATEGORY_ID
 ORDER BY SUM(IF(HD_STATUS.STATE not like '%closed%',1,0)) DESC;
 ";
 
-$result = mysql_query($query);
+$result = mysqli_query($dbh, $query);
 $rows = array();
-while( ($row = mysql_fetch_assoc($result)) )
+while( ($row = mysqli_fetch_assoc($result)) )
 {
 	if ($user===false && $row['openedLast12']<=5)
 		continue; // skip small categories
@@ -250,9 +250,11 @@ function printTicketTable( $tableName, $tableQuery )
   <tbody>
 ");
 
-	$result = mysql_query($tableQuery);
+	global $dbh;
+	
+	$result = mysqli_query($dbh, $tableQuery);
 	if ( $result !== false )
-	while( ($row = mysql_fetch_assoc($result)) )
+	while( ($row = mysqli_fetch_assoc($result)) )
 	{
 		$ID = htmlspecialchars($row['ID']);
 		$Title = htmlspecialchars($row['Title']);
@@ -355,6 +357,8 @@ function runtime($startstamp, $endstamp, $shortformat = TRUE, $num_times = 2)
 
 function print12MonthChart($category)
 {
+
+global $dbh;
 global $mainQueueOwners;
 global $mainQueueID;
 global $user;
@@ -397,8 +401,8 @@ GROUP BY YEAR(hdt.CREATED), MONTH(hdt.CREATED)
 ORDER BY YEAR(hdt.CREATED), MONTH(hdt.CREATED)
 ";
 
-$result1 = mysql_query($query1);
-while( ($row = mysql_fetch_assoc($result1)) )
+$result1 = mysqli_query($dbh, $query1);
+while( ($row = mysqli_fetch_assoc($result1)) )
 {
 	$total = $row["total"];
 	$month = $row["month"];
@@ -433,8 +437,8 @@ GROUP BY YEAR(hdt.TIME_CLOSED), MONTH(hdt.TIME_CLOSED)
 ORDER BY hdt.TIME_CLOSED
 ";
 
-$result1 = mysql_query($query1);
-while( ($row = mysql_fetch_assoc($result1)) )
+$result1 = mysqli_query($dbh, $query1);
+while( ($row = mysqli_fetch_assoc($result1)) )
 {
 	$total = $row["total"];
 	$month = $row["month"];

@@ -1,5 +1,8 @@
 KaceBootstrap
 =============
+
+Note from MattSchroyer: the following README has been unaltered from ammaross' original. The only changes that have been made on this fork were updates to make it PHP 5.5+ compatible. Where possible, mysql functions were replaced with mysqli equivalents. Because there was no equivalent for mysql_result, a new function called mysqli_result was created as a drop-in replacement, which resides in the PHP file named "mysqliresult."
+
 https://github.com/ammaross/KaceBootstrap
 
 -------------------------------------------------------------------------
